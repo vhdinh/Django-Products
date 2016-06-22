@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Edit</title>
+</head>
+<body>
+	<h1>Edit</h1>
+
+	{% if errors %}
+		{% for error in errors %}
+			<p style="color: red">{{error}}</p>
+		{% endfor %}
+	{% endif %}
+
+
+	<form action="{% url 'update' product_id=product.id %}" method="post"> {% csrf_token %}
+		<p>Name: </p>
+		<input type="text" name="name" value="{{product.name}}">
+		<p>Description: </p>
+		<input type="text" name="description" value="{{product.description}}">
+		<p>Price:</p>
+		<input type="number" name="price" step="0.01" min="0" value="{{product.price}}">
+		<br><br>
+		<input type="submit" value="Update">
+	</form>
+
+	<a href="/">Cancel</a>
+</body>
+</html>
